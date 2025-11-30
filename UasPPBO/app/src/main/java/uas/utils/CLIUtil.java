@@ -1,8 +1,6 @@
-package quiz3.utils;
+package uas.utils;
 
 import java.util.Scanner;
-
-import quiz3.models.InvalidInputException;
 
 public class CLIUtil {
     private static Scanner sc;
