@@ -6,6 +6,7 @@ import java.util.List;
 
 import uas.controllers.DeviceControllers;
 import uas.models.Device;
+import uas.models.exceptions.EmptyListException;
 import uas.models.exceptions.InvalidMenuException;
 import uas.models.exceptions.InvalidOSException;
 import uas.utils.CLIUtils;
@@ -98,6 +99,13 @@ public class DeviceView {
 
     public void printAll() {
         List<Device> devices = deviceControllers.getAllDevices();
+        try {
+            if (devices.isEmpty()) {
+                throw new EmptyListException();
+            }
+        } catch (EmptyListException e) {
+            System.out.println(e.getMessage());
+        }
 
         for (Device device : devices) {
             System.out.println(device.getNameDevice() + " booted: " + device.getOperatingSystem().getBootInfo());
